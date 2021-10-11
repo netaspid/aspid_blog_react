@@ -1,31 +1,17 @@
 import React from 'react';
 import {useRoutes} from 'react-router-dom';
-// import routes from './routes';
-import Home from './Home';
-import Blog from './Blog';
-
-const routes = [
-  {
-    path: 'blog',
-    element: <Blog />,
-  },
-  {
-    path: '/',
-    element: (
-      <Home />
-    ),
-  },
-];
-
+import GlobalStyles from '../theme/GlobalStyles';
+import routes from './routes';
+import {ThemeProvider} from '@mui/system';
+import themeOptions from '../theme';
 
 const App = () => {
   const content = useRoutes(routes);
-
   return (
-    <div>
-            Content: <br />
+    <ThemeProvider theme={themeOptions}>
+      <GlobalStyles/>
       {content}
-    </div>
+    </ThemeProvider>
   );
 };
 

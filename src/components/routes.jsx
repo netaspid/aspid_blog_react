@@ -1,6 +1,6 @@
 import React from 'react';
 import Blog from './Blog';
-import Home from './Home';
+import MainLayout from './MainLayout';
 
 const routes = [
   {
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: '/',
-    element: <Blog/>,
+    element: <MainLayout/>,
   },
 ];
 
