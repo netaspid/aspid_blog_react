@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -46,8 +45,7 @@ module.exports = {
         test: /\.(woff|woff2|ttf|eot)$/,
         loader: 'file-loader',
         options: {
-          name: 'fonts/[name].[ext]?[hash]',
-          publicPath: '/',
+          name: '[name].[ext]',
         },
       },
 

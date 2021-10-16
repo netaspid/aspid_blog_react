@@ -17,7 +17,7 @@ const TomatoButton = styled(Button)`
   border-color: tomato;
 `;
 
-const Blog = () => {
+const SectionBlog = () => {
   console.log('BLOG');
   return (
     <div>
@@ -27,4 +27,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default SectionBlog;

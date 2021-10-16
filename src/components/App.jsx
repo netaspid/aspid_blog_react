@@ -5,6 +5,7 @@ import routes from './routes';
 import {ThemeProvider} from '@mui/system';
 import themeOptions from '../theme';
 
+
 const App = () => {
   const content = useRoutes(routes);
   return (
