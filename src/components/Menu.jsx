@@ -7,6 +7,7 @@ const MenuButton = styled(Button)(({theme}) => ({
   color: '#aed3ec !important',
   fontFamily: 'Gilroy !important',
   fontSize: '1.5vh',
+  backgroundColor: 'transparent !important',
 }));
 
 const MenuBlock = styled('div')({
@@ -20,12 +21,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& a': {
       color: '#fff',
-      fontSize: '1em',
+      fontSize: '1.2em',
       // transition: 'cubic-bezier(0.075, 0.82, 0.165, 1) .5s',
       textDecoration: 'none',
     },
     '& a:hover': {
-      borderBottom: '1px solid #fff',
+      paddingBottom: '1px',
+      borderBottom: '1px solid white',
     },
   },
 }));

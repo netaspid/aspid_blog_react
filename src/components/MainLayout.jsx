@@ -46,7 +46,7 @@ const MainLayout = () => {
       <TopMenu/>
       <SliceLayout/>
       {isDesktop && (<HeaderPosts/>)}
-      <MainSection />
+      {<MainSection />}
       <Outlet/>
     </GridLayout>
   );

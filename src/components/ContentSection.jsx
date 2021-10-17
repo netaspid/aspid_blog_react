@@ -31,8 +31,8 @@ const Feed = styled(Box)(({theme}) =>({
   },
 }));
 
-const ContentItem = styled('div')(({theme, $cpath}) =>({
-  clipPath: $cpath,
+const ContentItem = styled('div')(({theme, cpath}) =>({
+  clipPath: cpath,
   [theme.breakpoints.down('md')]: {
     clipPath: 'none',
     borderRadius: '10px',
@@ -40,7 +40,7 @@ const ContentItem = styled('div')(({theme, $cpath}) =>({
     height: '25vh',
   },
   [theme.breakpoints.up('md')]: {
-    clipPath: $cpath,
+    clipPath: cpath,
     backgroundColor: 'white',
     width: '40vw',
     height: '20vh',
@@ -66,7 +66,7 @@ const ContentSection = (props) => {
         {(data && data.hasOwnProperty('data')) &&
             data.data.map((item, index) => {
               return (
-                <ContentItem $cpath={polygon1} key={'post'+index}>
+                <ContentItem cpath={polygon1} key={'post'+index}>
                   {item.id}
                 </ContentItem>
               );

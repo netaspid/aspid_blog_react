@@ -7,12 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import {IconButton} from '@mui/material';
 import MenuList from './Menu';
 import {useMediaQuery} from '@mui/material';
+import AnimatedButton from './AnimatedButton';
 
-const Navigation = styled(AppBar)({
+const Navigation = styled(AppBar)(({theme}) =>({
   boxShadow: 'none',
   backgroundColor: '#3cb1fb',
   zIndex: 999,
-});
+}));
 
 const animationTextLogo = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -44,11 +45,13 @@ const animationTextLogo = (props) => {
   return useStyles(props);
 };
 
-const TextLogo = styled(Typography)({
-  'textTransform': 'uppercase',
-  'minWidth': '5.3vw',
-  'lineHeight': '1.2',
-});
+const TextLogo = styled(Typography)(({theme}) =>({
+  textTransform: 'uppercase',
+  minWidth: 'auto',
+  lineHeight: '1.2',
+  width: '115px',
+}));
+
 
 const TopMenu = () => {
   const theme = useTheme();
@@ -74,13 +77,17 @@ const TopMenu = () => {
             className = {
               isAnimate ? animateClass.typing: animateClass.logoWithoutAnimation
             }
-            onAnimationEnd={()=>setTimeout(()=>setAnimate(false), 1000)}
+            onAnimationEnd={()=>setTimeout(()=>setAnimate(false), 1000) }
+            onMouseOver={() => setAnimate(true)}
           >
             Aspid.nl
           </p>
         </TextLogo>
         {isDesktop &&
           (<MenuList/>)
+        }
+        {isDesktop &&
+        <AnimatedButton text="Войти"/>
         }
       </Toolbar>
     </Navigation>

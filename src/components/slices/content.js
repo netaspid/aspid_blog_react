@@ -29,6 +29,7 @@ const initialState = {
           Nulla enim sint enim consequat incididunt occaecat
           qui laborum pariatur sit sint.`,
           created_at: '12.08.2021',
+          created_by: 'netaspid',
           feature_image: 'background-1.png',
           status: '',
         },
@@ -63,6 +64,7 @@ const initialState = {
                   Nulla enim sint enim consequat incididunt occaecat
                   qui laborum pariatur sit sint.`,
           created_at: '12.08.2021',
+          created_by: 'netaspid',
           feature_image: 'background-1.png',
           status: '',
         },
