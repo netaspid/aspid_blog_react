@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {styled} from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import {IconButton} from '@mui/material';
+import {Link} from 'react-router-dom';
 import MenuList from './Menu';
 import {useMediaQuery} from '@mui/material';
 import AnimatedButton from './AnimatedButton';
@@ -52,6 +53,14 @@ const TextLogo = styled(Typography)(({theme}) =>({
   width: '115px',
 }));
 
+const LogoLink = styled(Link)(({theme}) => ({
+  'textDecoration': 'none',
+  'color': 'inherit',
+  '&: hover': {
+    textDecoration: 'none',
+  },
+}));
+
 
 const TopMenu = () => {
   const theme = useTheme();
@@ -73,15 +82,19 @@ const TopMenu = () => {
           </IconButton>
           )}
         <TextLogo variant="h6" component="div">
-          <p
-            className = {
-              isAnimate ? animateClass.typing: animateClass.logoWithoutAnimation
-            }
-            onAnimationEnd={()=>setTimeout(()=>setAnimate(false), 1000) }
-            onMouseOver={() => setAnimate(true)}
-          >
-            Aspid.nl
-          </p>
+          <LogoLink to="/" >
+            <p
+              className = {
+                isAnimate ?
+                animateClass.typing:
+                animateClass.logoWithoutAnimation
+              }
+              onAnimationEnd={()=>setTimeout(()=>setAnimate(false), 1000) }
+              onMouseOver={() => setAnimate(true)}
+            >
+              Aspid.nl
+            </p>
+          </LogoLink>
         </TextLogo>
         {isDesktop &&
           (<MenuList/>)

@@ -1,30 +1,23 @@
+/* eslint-disable max-len */
 import React from 'react';
-import styled from 'styled-components';
+import {useSelector} from 'react-redux';
+import ContentSection from './ContentSection';
+import HeaderPosts from '../TopPosts';
+import {useTheme, useMediaQuery} from '@mui/material';
 
-const Button = styled.button`
-  display: inline-block;
-  text-decoration: none;
-  background: ${(props) => props.primary ? 'palevioletred' : 'white'};
-  color: ${(props) => props.primary ? 'white' : 'palevioletred'};
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid palevioletred;
-  border-radius: 3px;
-`;
-const TomatoButton = styled(Button)`
-  color: tomato;
-  border-color: tomato;
-`;
 
-const SectionBlog = () => {
-  console.log('BLOG');
+const MainSection = (props) => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+
+  const content = useSelector((state) => state.content.posts);
+
   return (
-    <div>
-      <Button as="a" href="#">My first styled button </Button>
-      <TomatoButton as="a" href="#">My first styled button </TomatoButton>
-    </div>
+    <>
+      {isDesktop && (<HeaderPosts/>)}
+      <ContentSection content={content}/>
+    </>
   );
 };
 
-export default SectionBlog;
+export default MainSection;

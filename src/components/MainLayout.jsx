@@ -1,11 +1,8 @@
 import React from 'react';
 import TopMenu from './Navigation';
-import HeaderPosts from './TopPosts';
-import MainSection from './MainSection';
+import {Outlet} from 'react-router';
 import {styled} from '@mui/system';
 import {Grid} from '@mui/material';
-import {Outlet} from 'react-router';
-import {useTheme, useMediaQuery} from '@mui/material';
 import backgroundImage from './../../public/images/layout-bg.svg';
 
 const GridLayout = styled(Grid)({
@@ -23,7 +20,7 @@ const GridLayout = styled(Grid)({
 const SliceLayout = styled(Grid)(({theme}) =>({
   [theme.breakpoints.down('md')]: {
     display: 'flex',
-    height: '10vh',
+    height: '100%',
     minWidth: '100%',
     width: '100%',
     opacity: 0.1,
@@ -39,14 +36,10 @@ const SliceLayout = styled(Grid)(({theme}) =>({
 }));
 
 const MainLayout = () => {
-  const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   return (
     <GridLayout container spacing={1}>
       <TopMenu/>
       <SliceLayout/>
-      {isDesktop && (<HeaderPosts/>)}
-      {<MainSection />}
       <Outlet/>
     </GridLayout>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
-import Blog from './Blog/SectionBlog';
+import OnePost from './Blog/OnePost';
 import MainLayout from './MainLayout';
+import SectionBlog from './Blog/SectionBlog';
+import {Outlet} from 'react-router';
 
 const routes = [
   {
@@ -8,8 +10,19 @@ const routes = [
     element: <MainLayout/>,
     children: [
       {
-        path: 'blog',
-        element: <Blog/>,
+        path: '/',
+        element: <SectionBlog/>,
+      },
+      {
+        path: 'post',
+        element: <Outlet/>,
+        children: [
+          {
+            path: ':id',
+            element: <OnePost/>,
+          },
+
+        ],
       },
     ],
   },

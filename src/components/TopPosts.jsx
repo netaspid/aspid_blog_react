@@ -4,9 +4,15 @@ import {Avatar, Grid, Paper} from '@mui/material';
 import {useSelector} from 'react-redux';
 import {Typography} from '@mui/material';
 import AnimatedButton from './AnimatedButton';
+import {Link} from 'react-router-dom';
+const TopPostWrapper = styled('div')(({theme}) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+}));
 
 const TopPosts = styled('div')({
-  position: 'absolute',
+  marginTop: '-30%',
   display: 'flex',
   top: '10vw',
   left: '14vw',
@@ -59,99 +65,101 @@ const TopPostReadBtnWrapper = styled('div')(({theme}) => ({
 
 const HeaderPosts = () => {
   const [content, users] =
-    useSelector((state) => [state.content.content, state.users.users]);
+    useSelector((state) => [state.content.posts, state.users.users]);
 
-  let topPosts;
-  if (Array.isArray(content)) {
-    if (content.length > 0) {
-      topPosts =
-        content.filter((elememt) => elememt.type === 'topPosts')[0]?.data ?? [];
-    }
-  }
+  const topPosts = content.slice(0, 2);
   const topPostOneUser = users.find(
       (user) => user.name === topPosts[0]?.created_by ?? '') ?? '';
 
   return (
-    <TopPosts>
-      <Grid
-        direction="row"
-        container
-        spacing={2}>
+    <TopPostWrapper>
+      <TopPosts>
         <Grid
-          item xs={8}>
-          <Item>
-            {
-              (topPosts?.length > 0) &&
+          direction="row"
+          container
+          spacing={2}>
+          <Grid
+            item xs={8}>
+            <Item>
+              {
+                (topPosts?.length > 0) &&
               (
                 <img
                   style={{width: '100%', height: '100%', objectFit: 'cover'}}
                   src={'images/'+topPosts[0].feature_image}/>
               )
-            }
-            <GradientWrapper>
-              {
-                (topPosts?.length > 0) &&
+              }
+              <GradientWrapper>
+                {
+                  (topPosts?.length > 0) &&
                     (
                       <Typography variant="h2">
                         {topPosts[0].title}
                       </Typography>
                     )
-              }
+                }
+                {
+                  (topPosts?.length > 0) &&(
+                    <TopPostUserWrapper>
+                      <Avatar
+                        sx={{
+                          marginRight: '.5rem',
+                        }}
+                        src={'images/'+topPostOneUser.image}
+                      />
+                      <Typography
+                        variant="h8"
+                        sx ={{
+                          fontFamily: 'Gugi',
+                        }}
+                      >
+                        {topPostOneUser.name}
+                      </Typography>
+                    </TopPostUserWrapper>
+                  )
+                }
+                {
+                  (topPosts?.length > 0) &&(
+                    <TopPostReadBtnWrapper>
+                      <Link
+                        style={{
+                          textDecoration: 'none',
+                        }}
+                        to={'post/'+topPosts[0].id}>
+                        <AnimatedButton
+                          text="Читать"/>
+                      </Link>
+                    </TopPostReadBtnWrapper>
+                  )
+                }
+              </GradientWrapper>
+            </Item>
+          </Grid>
+          <Grid
+            item xs={4}
+            sx={
               {
-                (topPosts?.length > 0) &&(
-                  <TopPostUserWrapper>
-                    <Avatar
-                      sx={{
-                        marginRight: '.5rem',
-                      }}
-                      src={'images/'+topPostOneUser.image}
-                    />
-                    <Typography
-                      variant="h8"
-                      sx ={{
-                        fontFamily: 'Gugi',
-                      }}
-                    >
-                      {topPostOneUser.name}
-                    </Typography>
-                  </TopPostUserWrapper>
-                )
-              }
-              {
-                (topPosts?.length > 0) &&(
-                  <TopPostReadBtnWrapper>
-                    <AnimatedButton
-                      text="Читать"/>
-                  </TopPostReadBtnWrapper>
-                )
-              }
-            </GradientWrapper>
-          </Item>
-        </Grid>
-        <Grid
-          item xs={4}
-          sx={
-            {
-              clipPath:
+                clipPath:
                'polygon(0% 8%, 14% 0%, 100% 0%, 100% 96%, 94% 100%, 0% 100%)',
-            }
-          }>
-          <Item
-            sx={{
-              background: 'rgba(59,119,211, 0.94)',
-              color: '#fff',
-            }}>
-            {(topPosts?.length > 0) &&
+              }
+            }>
+            <Item
+              sx={{
+                background: 'rgba(59,119,211, 0.94)',
+                color: '#fff',
+              }}>
+              {(topPosts?.length > 0) &&
               (
                 <Typography variant="h4">
                   {topPosts[1].title}
                 </Typography>
               )
-            }
-          </Item>
+              }
+            </Item>
+          </Grid>
         </Grid>
-      </Grid>
-    </TopPosts>
+      </TopPosts>
+    </TopPostWrapper>
   );
 };
 
