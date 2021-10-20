@@ -3,6 +3,7 @@ import TopMenu from './Navigation';
 import {Outlet} from 'react-router';
 import {styled} from '@mui/system';
 import {Grid} from '@mui/material';
+import Footer from './Footer';
 import backgroundImage from './../../public/images/layout-bg.svg';
 
 const GridLayout = styled(Grid)({
@@ -41,6 +42,7 @@ const MainLayout = () => {
       <TopMenu/>
       <SliceLayout/>
       <Outlet/>
+      <Footer/>
     </GridLayout>
   );
 };

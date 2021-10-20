@@ -23,18 +23,17 @@ const useStyles = makeStyles(() =>
         width: '100%',
       },
       '*::-webkit-scrollbar': {
-        width: '0.3em',
-        height: '0.3em',
+        width: '0',
+        height: '0',
       },
       '*::-webkit-scrollbar-track': {
-        '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
+        // '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)',
       },
       '*::-webkit-scrollbar-thumb': {
-        backgroundColor: 'rgba(153,153,156,.7)',
-        borderRadius: '6px',
+        backgroundColor: 'transparent',
       },
       '*::-webkit-scrollbar-thumb:hover': {
-        backgroundColor: '#5664d2',
+        backgroundColor: 'transparent',
       },
     },
   }),
