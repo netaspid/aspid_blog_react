@@ -71,7 +71,12 @@ const OnePost = () => {
             fontSize: '1.1rem',
           }}
         >
-          {content.plaintext}
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{__html: content.html}}
+          >
+
+          </div>
         </Typography>
       </OnePostContainer>
     </WrappedContainer>

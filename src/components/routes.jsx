@@ -1,8 +1,20 @@
-import React from 'react';
+/* eslint-disable new-cap */
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable no-tabs */
+import React, {Suspense, lazy} from 'react';
 import OnePost from './Blog/OnePost';
-import MainLayout from './MainLayout';
 import SectionBlog from './Blog/SectionBlog';
 import {Outlet} from 'react-router';
+import LoadingScreen from './LoadingScreen';
+
+// eslint-disable-next-line react/display-name
+const Loadable = (Component) => (props) =>
+	    (
+	      <Suspense fallback={<LoadingScreen />}>
+	        <Component {...props} />
+	      </Suspense>
+	    );
+const MainLayout = Loadable(lazy(() => import('./MainLayout')));
 
 const routes = [
   {

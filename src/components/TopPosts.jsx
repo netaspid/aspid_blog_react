@@ -63,9 +63,21 @@ const TopPostReadBtnWrapper = styled('div')(({theme}) => ({
   top: '90%',
 }));
 
+const checkImageExists = (url) => {
+  console.log('check for image');
+  const image = new Image();
+  image.src = 'images/' + url;
+  if (image.width === 0) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 const HeaderPosts = () => {
   const [content, users] =
     useSelector((state) => [state.content.posts, state.users.users]);
+
 
   const topPosts = content.slice(0, 2);
   const topPostOneUser = users.find(
@@ -74,7 +86,8 @@ const HeaderPosts = () => {
   return (
     <TopPostWrapper>
       <TopPosts>
-        <Grid
+        {topPosts.length > 0 &&
+        (<Grid
           direction="row"
           container
           spacing={2}>
@@ -82,11 +95,11 @@ const HeaderPosts = () => {
             item xs={8}>
             <Item>
               {
-                (topPosts?.length > 0) &&
+                (checkImageExists(topPosts[0].feature_image)) &&
               (
                 <img
                   style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                  src={'images/'+topPosts[0].feature_image}/>
+                  src={'images/'+topPosts[0].feature_image} />
               )
               }
               <GradientWrapper>
@@ -148,7 +161,7 @@ const HeaderPosts = () => {
                 background: 'rgba(59,119,211, 0.94)',
                 color: '#fff',
               }}>
-              {(topPosts?.length > 0) &&
+              {(topPosts?.length > 1) &&
               (
                 <Typography variant="h4">
                   {topPosts[1].title}
@@ -157,7 +170,7 @@ const HeaderPosts = () => {
               }
             </Item>
           </Grid>
-        </Grid>
+        </Grid>)}
       </TopPosts>
     </TopPostWrapper>
   );
